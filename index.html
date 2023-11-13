@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
+    <!-- header -->
     <header>
       <div class="header-container">
         <div class="container">
@@ -27,10 +28,53 @@
         </div>
       </div>
     </header>
-    <main class="container">
-      <div data-view="entry-form"></div>
-      <div data-view="entries" class="hidden"></div>
-    </main>
+    <!-- body -->
+    <div class="body-container">
+      <main class="container">
+        <div data-view="entry-form">
+          <form>
+            <div class="row">
+              <div class="column-full">
+                <h1>New Entry</h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column-half">
+                <img src="images/placeholder-image-square.jpg" />
+              </div>
+              <div class="column-half entry-column">
+                <div>
+                  <label for="title">Title</label>
+                </div>
+                <div>
+                  <input type="text" id="title" />
+                </div>
+                <div>
+                  <label for="photo-URL">Photo URL</label>
+                </div>
+                <div>
+                  <input type="text" id="photo-URL" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column-full notes-column">
+                <div>
+                  <label for="notes">Notes</label>
+                </div>
+                <div>
+                  <textarea id="notes" rows="8"></textarea>
+                </div>
+                <div class="save-button-wrapper">
+                  <input type="button" value="SAVE" />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div data-view="entries" class="hidden"></div>
+      </main>
+    </div>
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
   </body>
