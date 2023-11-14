@@ -31,7 +31,8 @@
     <!-- body -->
     <div class="body-container">
       <main class="container">
-        <div data-view="entry-form">
+        <!-- entry form -->
+        <div data-view="entry-form" class="hidden">
           <form>
             <div class="row">
               <div class="column-full">
@@ -62,7 +63,13 @@
             </div>
           </form>
         </div>
-        <div data-view="entries" class="hidden"></div>
+        <!-- view entries -->
+        <div data-view="entries" class="">
+          <div class="row title-row">
+            <h1>Entries</h1>
+            <button>NEW</button>
+          </div>
+        </div>
       </main>
     </div>
     <script src="js/data.js"></script>
