@@ -15,7 +15,7 @@ function handleSubmit(event) {
     inputObj[event.target[i].id] = event.target[i].value;
   }
   inputObj.entryID = data.nextEntryId++;
-  data.entries.unshift(inputObj.entryID);
+  data.entries.unshift(inputObj);
   $form.reset();
   $photo.setAttribute('src', 'images/placeholder-image-square.jpg');
 }
