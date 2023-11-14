@@ -6,6 +6,7 @@ const $form = document.querySelector('form');
 
 function handlePhotoInput(event) {
   $photo.setAttribute('src', event.target.value);
+  $photo.setAttribute('alt', 'image from photoURL');
 }
 
 function handleSubmit(event) {
@@ -18,6 +19,7 @@ function handleSubmit(event) {
   data.entries.unshift(inputObj);
   $form.reset();
   $photo.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $photo.setAttribute('alt', 'placeholder image');
 }
 $photoURL.addEventListener('input', handlePhotoInput);
 
