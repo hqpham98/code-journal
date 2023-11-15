@@ -6,6 +6,9 @@ const $form = document.querySelector('form');
 const $entriesAnchor = document.querySelector('#entries-anchor');
 const $newAnchor = document.querySelector('#new-anchor');
 const $entriesList = document.querySelector('.entries-list');
+const $noEntries = document.querySelector('.no-entries');
+const $entries = document.querySelector('div[data-view=entries]');
+const $entryForm = document.querySelector('div[data-view=entry-form]');
 
 function handlePhotoInput(event) {
   $photo.setAttribute('src', event.target.value);
@@ -23,9 +26,9 @@ function handleSubmit(event) {
   $form.reset();
   $photo.setAttribute('src', 'images/placeholder-image-square.jpg');
   $photo.setAttribute('alt', 'placeholder image');
-  viewSwap('entries');
   toggleNoEntries();
   $entriesList.prepend(renderEntry(inputObj));
+  viewSwap('entries');
 }
 
 function renderEntry(entry) {
@@ -44,6 +47,7 @@ function renderEntry(entry) {
 
   const $image = document.createElement('img');
   $image.setAttribute('src', entry.photo);
+  $image.setAttribute('alt', 'entry image');
   $imageColumn.appendChild($image);
 
   const $titleHeader = document.createElement('h3');
@@ -61,7 +65,6 @@ function renderEntry(entry) {
 }
 
 function toggleNoEntries() {
-  const $noEntries = document.querySelector('.no-entries');
   if (data.entries.length === 0) {
     $noEntries.className = 'no-entries';
   } else {
@@ -70,18 +73,16 @@ function toggleNoEntries() {
 }
 
 function handleDOMContentLoaded(event) {
-  toggleNoEntries();
-  viewSwap(data.view);
   if (data.entries.length !== 0) {
     for (const entry of data.entries) {
       $entriesList.appendChild(renderEntry(entry));
     }
   }
+  toggleNoEntries();
+  viewSwap(data.view);
 }
 
 function viewSwap(view) {
-  const $entries = document.querySelector('div[data-view=entries]');
-  const $entryForm = document.querySelector('div[data-view=entry-form]');
   data.view = view;
 
   if (view === 'entries') {
