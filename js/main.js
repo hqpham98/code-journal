@@ -54,10 +54,22 @@ function renderEntry(entry) {
   return $listItem;
 }
 
+function toggleNoEntries() {
+  const $noEntries = document.querySelector('.no-entries');
+  if (data.entries.length === 0) {
+    $noEntries.className = 'no-entries hidden';
+  } else {
+    $noEntries.className = 'no-entries';
+  }
+}
+
 function handleDOMContentLoaded(event) {
-  for (const entry of data.entries) {
-    const $entriesList = document.querySelector('.entries-list');
-    $entriesList.appendChild(renderEntry(entry));
+  const $entriesList = document.querySelector('.entries-list');
+  if (data.entries.length !== 0) {
+    toggleNoEntries();
+    for (const entry of data.entries) {
+      $entriesList.appendChild(renderEntry(entry));
+    }
   }
 }
 
