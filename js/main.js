@@ -80,6 +80,7 @@ function viewSwap(view) {
   data.view = view;
 
   if (view === 'entries') {
+    console.log('hello');
     $entryForm.classList.add('hidden');
     $entries.classList.remove('hidden');
   } else {
@@ -98,4 +99,4 @@ $form.addEventListener('submit', handleSubmit);
 
 document.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
 
-$entriesAnchor.addEventListener('onclick', handleAnchorClick);
+$entriesAnchor.addEventListener('click', handleAnchorClick);
