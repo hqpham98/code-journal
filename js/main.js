@@ -5,6 +5,7 @@ const $photo = document.querySelector('form img');
 const $form = document.querySelector('form');
 const $entriesAnchor = document.querySelector('#entries-anchor');
 const $newAnchor = document.querySelector('#new-anchor');
+const $entriesList = document.querySelector('.entries-list');
 
 function handlePhotoInput(event) {
   $photo.setAttribute('src', event.target.value);
@@ -22,6 +23,9 @@ function handleSubmit(event) {
   $form.reset();
   $photo.setAttribute('src', 'images/placeholder-image-square.jpg');
   $photo.setAttribute('alt', 'placeholder image');
+  viewSwap('entries');
+  toggleNoEntries();
+  $entriesList.prepend(renderEntry(inputObj));
 }
 
 function renderEntry(entry) {
@@ -67,8 +71,6 @@ function toggleNoEntries() {
 
 function handleDOMContentLoaded(event) {
   toggleNoEntries();
-  viewSwap('entries');
-  const $entriesList = document.querySelector('.entries-list');
   if (data.entries.length !== 0) {
     for (const entry of data.entries) {
       $entriesList.appendChild(renderEntry(entry));
