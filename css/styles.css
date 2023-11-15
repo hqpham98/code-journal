@@ -80,3 +80,23 @@ button:hover {
   font-weight: bold;
   color: white;
 }
+
+.entries-list-container ul {
+  padding-inline-start: 0;
+}
+
+.entries-list li {
+  list-style-type: none;
+  list-style-position: outside;
+}
+
+.entries-list .entries-image-wrapper {
+  width: 50%;
+  text-align: center;
+}
+
+.entries-list .entries-image-wrapper img {
+  max-height: 400px;
+  width: auto;
+  max-width: 100%;
+}
