@@ -71,6 +71,7 @@ function toggleNoEntries() {
 
 function handleDOMContentLoaded(event) {
   toggleNoEntries();
+  viewSwap(data.view);
   if (data.entries.length !== 0) {
     for (const entry of data.entries) {
       $entriesList.appendChild(renderEntry(entry));

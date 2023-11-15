@@ -57,6 +57,13 @@ button:hover {
   border: 1px solid #b6b6b7;
 }
 
+.entry-form-title {
+  font-family: 'Proza Libre', sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  padding: 10px 0;
+}
+
 .notes-column {
   line-height: 2;
 }
