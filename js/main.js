@@ -3,6 +3,7 @@
 const $photoURL = document.querySelector('#photo-URL');
 const $photo = document.querySelector('form img');
 const $form = document.querySelector('form');
+const $entriesAnchor = document.querySelector('#entries-anchor');
 
 function handlePhotoInput(event) {
   $photo.setAttribute('src', event.target.value);
@@ -57,20 +58,38 @@ function renderEntry(entry) {
 function toggleNoEntries() {
   const $noEntries = document.querySelector('.no-entries');
   if (data.entries.length === 0) {
-    $noEntries.className = 'no-entries hidden';
-  } else {
     $noEntries.className = 'no-entries';
+  } else {
+    $noEntries.className = 'no-entries hidden';
   }
 }
 
 function handleDOMContentLoaded(event) {
+  toggleNoEntries();
   const $entriesList = document.querySelector('.entries-list');
   if (data.entries.length !== 0) {
-    toggleNoEntries();
     for (const entry of data.entries) {
       $entriesList.appendChild(renderEntry(entry));
     }
   }
+}
+
+function viewSwap(view) {
+  const $entries = document.querySelector('div[data-view=entries]');
+  const $entryForm = document.querySelector('div[data-view=entry-form]');
+  data.view = view;
+
+  if (view === 'entries') {
+    $entryForm.classList.add('hidden');
+    $entries.classList.remove('hidden');
+  } else {
+    $entries.classList.add('hidden');
+    $entryForm.classList.remove('hidden');
+  }
+}
+
+function handleAnchorClick(event) {
+  viewSwap('entries');
 }
 
 $photoURL.addEventListener('input', handlePhotoInput);
@@ -78,3 +97,5 @@ $photoURL.addEventListener('input', handlePhotoInput);
 $form.addEventListener('submit', handleSubmit);
 
 document.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
+
+$entriesAnchor.addEventListener('onclick', handleAnchorClick);

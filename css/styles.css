@@ -11,6 +11,27 @@ button:hover {
   color: white;
 }
 
+.nav-bar {
+  display: flex;
+  align-items: center;
+  height: 53px;
+}
+
+.nav-bar .nav-bar-title {
+  margin-right: 2rem;
+  font-family: 'Proza Libre', sans-serif;
+  font-size: 20px;
+  color: white;
+}
+
+.nav-bar .nav-bar-entries #entries-anchor {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+}
+
 .body-container {
   background-color: #eee;
   padding-bottom: 1rem;
@@ -75,9 +96,10 @@ button:hover {
   background-color: #4c2676;
   border-style: none;
   border-radius: 4px;
-  padding: 0.5rem 1rem;
-  font-size: 1.1rem;
-  font-weight: bold;
+  padding: 0.5rem 0.8rem;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
   color: white;
 }
 
