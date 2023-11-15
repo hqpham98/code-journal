@@ -8,14 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Proza+Libre&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Proza+Libre:wght@400;600&display=swap"
       rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/layout.css" />
     <link rel="stylesheet" href="css/styles.css" />
@@ -42,7 +36,7 @@
     <div class="body-container">
       <main class="container">
         <!-- entry form -->
-        <div data-view="entry-form" class="">
+        <div data-view="entry-form" class="hidden">
           <form>
             <div class="row">
               <div class="column-full">
@@ -74,10 +68,10 @@
           </form>
         </div>
         <!-- view entries -->
-        <div data-view="entries" class="hidden">
+        <div data-view="entries" class="">
           <div class="row title-row">
-            <h1>Entries</h1>
-            <button>NEW</button>
+            <div class="title-row-title">Entries</div>
+            <a href="#" id="new-anchor">NEW</a>
           </div>
           <div class="entries-list-container">
             <ul class="entries-list">
