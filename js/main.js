@@ -50,8 +50,24 @@ function renderEntry(entry) {
   $image.setAttribute('alt', 'entry image');
   $imageColumn.appendChild($image);
 
+  const $titleHeaderRow = document.createElement('div');
+  $titleHeaderRow.setAttribute('class', 'row');
+  $textColumn.appendChild($titleHeaderRow);
+
+  const $titleHeaderTextColumn = document.createElement('div');
+  $titleHeaderTextColumn.className = 'entry-title-column-text';
+  $titleHeaderRow.appendChild($titleHeaderTextColumn);
+
+  const $titleHeaderPencilColumn = document.createElement('div');
+  $titleHeaderPencilColumn.className = 'entry-title-column-icon';
+  $titleHeaderRow.appendChild($titleHeaderPencilColumn);
+
   const $titleHeader = document.createElement('h3');
-  $textColumn.appendChild($titleHeader);
+  $titleHeaderTextColumn.appendChild($titleHeader);
+
+  const $pencilIcon = document.createElement('i');
+  $pencilIcon.setAttribute('class', 'fa-solid fa-pencil');
+  $titleHeaderPencilColumn.appendChild($pencilIcon);
 
   const $titleHeaderText = document.createTextNode(entry.title);
   $titleHeader.appendChild($titleHeaderText);

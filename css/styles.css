@@ -117,6 +117,19 @@ button:hover {
   padding: 12px 0;
 }
 
+.entry-title-column-text {
+  flex-basis: 90%;
+}
+
+.entry-title-column-icon {
+  flex-basis: 10%;
+  padding-top: 1.2rem;
+}
+
+.fa-pencil:hover {
+  cursor: pointer;
+}
+
 .entries-list-container ul {
   padding-inline-start: 0;
 }
