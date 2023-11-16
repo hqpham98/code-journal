@@ -9,7 +9,9 @@ const $entriesList = document.querySelector('.entries-list');
 const $noEntries = document.querySelector('.no-entries');
 const $entries = document.querySelector('div[data-view=entries]');
 const $entryForm = document.querySelector('div[data-view=entry-form]');
-
+const $entryFormTitle = document.querySelector('.entry-form-title');
+const $entryTitle = document.querySelector('input[id=title]');
+const $entryNotes = document.querySelector('textarea[id=notes]');
 function handlePhotoInput(event) {
   $photo.setAttribute('src', event.target.value);
   $photo.setAttribute('alt', 'image from photoURL');
@@ -33,6 +35,8 @@ function handleSubmit(event) {
 
 function renderEntry(entry) {
   const $listItem = document.createElement('li');
+  $listItem.setAttribute('data-entry-id', entry.entryID);
+
   const $row = document.createElement('div');
   $listItem.appendChild($row);
   $row.className = 'row';
@@ -118,6 +122,25 @@ function handleAnchorClick(event) {
   }
 }
 
+function handleEditClick(event) {
+  if (event.target.className === 'fa-solid fa-pencil') {
+    const $listEntryID = event.target
+      .closest('li')
+      .getAttribute('data-entry-id');
+    for (const entry of data.entries) {
+      if (entry.entryID === Number($listEntryID)) {
+        $entryFormTitle.innerText = 'Edit Entry';
+        $entryTitle.value = entry.title;
+        $photoURL.value = entry.photo;
+        $entryNotes.value = entry.notes;
+        $photo.setAttribute('src', entry.photo);
+        viewSwap();
+        break;
+      }
+    }
+  }
+}
+
 $photoURL.addEventListener('input', handlePhotoInput);
 
 $form.addEventListener('submit', handleSubmit);
@@ -126,3 +149,4 @@ document.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
 
 $entriesAnchor.addEventListener('click', handleAnchorClick);
 $newAnchor.addEventListener('click', handleAnchorClick);
+$entriesList.addEventListener('click', handleEditClick);
