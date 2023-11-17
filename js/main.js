@@ -23,13 +23,31 @@ function handleSubmit(event) {
   inputObj.title = event.target[0].value;
   inputObj.photo = event.target[1].value;
   inputObj.notes = event.target[2].value;
-  inputObj.entryID = data.nextEntryId++;
-  data.entries.unshift(inputObj);
+  if (data.editing !== null) {
+    inputObj.entryID = data.editing.entryID;
+    for (let i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryID === data.editing.entryID) {
+        data.entries[i] = inputObj;
+        break;
+      }
+    }
+    const $temp = 'li[data-entry-id="' + data.editing.entryID + '"]';
+    const $oldEntry = document.querySelector($temp);
+    console.log('renderEntry(inputObj)', renderEntry(inputObj));
+    console.log('$oldEntry', $oldEntry);
+    $oldEntry.replaceWith(renderEntry(inputObj));
+    data.editing = null;
+    $entryFormTitle.innerText = 'New Entry';
+  } else {
+    inputObj.entryID = data.nextEntryId++;
+    data.entries.unshift(inputObj);
+    toggleNoEntries();
+    $entriesList.prepend(renderEntry(inputObj));
+  }
   $form.reset();
   $photo.setAttribute('src', 'images/placeholder-image-square.jpg');
   $photo.setAttribute('alt', 'placeholder image');
-  toggleNoEntries();
-  $entriesList.prepend(renderEntry(inputObj));
+
   viewSwap('entries');
 }
 
@@ -134,6 +152,8 @@ function handleEditClick(event) {
         $photoURL.value = entry.photo;
         $entryNotes.value = entry.notes;
         $photo.setAttribute('src', entry.photo);
+        $photo.setAttribute('alt', 'image from photoURL');
+        data.editing = entry;
         viewSwap();
         break;
       }
