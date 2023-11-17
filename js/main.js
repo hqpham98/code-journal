@@ -12,6 +12,15 @@ const $entryForm = document.querySelector('div[data-view=entry-form]');
 const $entryFormTitle = document.querySelector('.entry-form-title');
 const $entryTitle = document.querySelector('input[id=title]');
 const $entryNotes = document.querySelector('textarea[id=notes]');
+
+function resetEntryForm() {
+  $form.reset();
+  $photo.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $photo.setAttribute('alt', 'placeholder image');
+  data.editing = null;
+  $entryFormTitle.innerText = 'New Entry';
+}
+
 function handlePhotoInput(event) {
   $photo.setAttribute('src', event.target.value);
   $photo.setAttribute('alt', 'image from photoURL');
@@ -36,18 +45,12 @@ function handleSubmit(event) {
     console.log('renderEntry(inputObj)', renderEntry(inputObj));
     console.log('$oldEntry', $oldEntry);
     $oldEntry.replaceWith(renderEntry(inputObj));
-    data.editing = null;
-    $entryFormTitle.innerText = 'New Entry';
   } else {
     inputObj.entryID = data.nextEntryId++;
     data.entries.unshift(inputObj);
     toggleNoEntries();
     $entriesList.prepend(renderEntry(inputObj));
   }
-  $form.reset();
-  $photo.setAttribute('src', 'images/placeholder-image-square.jpg');
-  $photo.setAttribute('alt', 'placeholder image');
-
   viewSwap('entries');
 }
 
@@ -126,6 +129,7 @@ function viewSwap(view) {
   if (view === 'entries') {
     $entryForm.classList.add('hidden');
     $entries.classList.remove('hidden');
+    resetEntryForm();
   } else {
     $entries.classList.add('hidden');
     $entryForm.classList.remove('hidden');
