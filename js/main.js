@@ -42,8 +42,6 @@ function handleSubmit(event) {
     }
     const $temp = 'li[data-entry-id="' + data.editing.entryID + '"]';
     const $oldEntry = document.querySelector($temp);
-    console.log('renderEntry(inputObj)', renderEntry(inputObj));
-    console.log('$oldEntry', $oldEntry);
     $oldEntry.replaceWith(renderEntry(inputObj));
   } else {
     inputObj.entryID = data.nextEntryId++;
@@ -130,7 +128,7 @@ function viewSwap(view) {
     $entryForm.classList.add('hidden');
     $entries.classList.remove('hidden');
     resetEntryForm();
-  } else {
+  } else if (view === 'entry-form') {
     $entries.classList.add('hidden');
     $entryForm.classList.remove('hidden');
   }
@@ -158,7 +156,7 @@ function handleEditClick(event) {
         $photo.setAttribute('src', entry.photo);
         $photo.setAttribute('alt', 'image from photoURL');
         data.editing = entry;
-        viewSwap();
+        viewSwap('entry-form');
         break;
       }
     }
