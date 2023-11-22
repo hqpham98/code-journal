@@ -2,6 +2,10 @@ body {
   background-color: #eee;
 }
 
+/* .body-container {
+  position: relative;
+} */
+
 button:hover {
   cursor: pointer;
 }
@@ -160,4 +164,25 @@ button:hover {
   max-height: 400px;
   width: auto;
   max-width: 100%;
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.confirmation-modal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 100px;
+  width: 300px;
+  border: 1px solid black;
 }
