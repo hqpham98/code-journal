@@ -12,6 +12,7 @@ const $entryForm = document.querySelector('div[data-view=entry-form]');
 const $entryFormTitle = document.querySelector('.entry-form-title');
 const $entryTitle = document.querySelector('input[id=title]');
 const $entryNotes = document.querySelector('textarea[id=notes]');
+const $deleteButton = document.querySelector('.delete-button');
 
 function resetEntryForm() {
   $form.reset();
@@ -137,6 +138,7 @@ function viewSwap(view) {
 function handleAnchorClick(event) {
   if (event.target === $entriesAnchor) {
     viewSwap('entries');
+    $deleteButton.classList.add('hidden');
   } else {
     viewSwap('entry-form');
   }
@@ -144,6 +146,7 @@ function handleAnchorClick(event) {
 
 function handleEditClick(event) {
   if (event.target.className === 'fa-solid fa-pencil') {
+    $deleteButton.classList.remove('hidden');
     const $listEntryID = event.target
       .closest('li')
       .getAttribute('data-entry-id');

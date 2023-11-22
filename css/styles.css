@@ -6,6 +6,10 @@ button:hover {
   cursor: pointer;
 }
 
+.strict-column-half {
+  flex-basis: 50%;
+}
+
 .header-container {
   background-color: #4c2676;
   color: white;
@@ -91,6 +95,14 @@ button:hover {
 
 .save-button-wrapper input:hover {
   cursor: pointer;
+}
+
+.delete-button {
+  border-style: none;
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  color: #dc2626;
+  text-decoration: underline;
 }
 
 .title-row {
