@@ -128,7 +128,6 @@ function handleDOMContentLoaded(event) {
 
 function viewSwap(view) {
   data.view = view;
-  console.log(event.target);
 
   if (view === 'entries') {
     $entryForm.classList.add('hidden');
@@ -146,7 +145,6 @@ function handleAnchorClick(event) {
     $deleteButton.classList.add('hidden');
   } else {
     viewSwap('entry-form');
-
   }
 }
 
@@ -190,6 +188,29 @@ function handleCancelModalClick(event) {
   modalViewSwap("hide");
 }
 
+function removeEntry(entry) {
+
+}
+
+
+function handleConfirmModalClick(event) {
+  modalViewSwap("hide");
+  console.log("data.editing", data.editing);
+  console.log("data.entries (before):", data.entries);
+
+  for (let i = 0; i < data.entries.length; i++) {
+    if (data.entries[i].entryID === data.editing.entryID) {
+      data.entries.splice(i,1);
+      break;
+    }
+  }
+
+  // toggleNoEntries();
+  console.log("data.entries (after):", data.entries);
+  data.editing = null;
+  viewSwap("entries");
+}
+
 $photoURL.addEventListener('input', handlePhotoInput);
 
 $form.addEventListener('submit', handleSubmit);
@@ -201,3 +222,4 @@ $newAnchor.addEventListener('click', handleAnchorClick);
 $entriesList.addEventListener('click', handleEditClick);
 $deleteButton.addEventListener('click', handleDeleteClick);
 $cancelModalButton.addEventListener('click', handleCancelModalClick);
+$confirmModalButton.addEventListener('click', handleConfirmModalClick);
