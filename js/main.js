@@ -13,6 +13,10 @@ const $entryFormTitle = document.querySelector('.entry-form-title');
 const $entryTitle = document.querySelector('input[id=title]');
 const $entryNotes = document.querySelector('textarea[id=notes]');
 const $deleteButton = document.querySelector('.delete-button');
+const $modal = document.querySelector('.confirmation-modal');
+const $cancelModalButton = document.querySelector('.cancel-modal-button');
+const $confirmModalButton = document.querySelector('.confirm-modal-button');
+const $overlay = document.querySelector('.overlay');
 
 function resetEntryForm() {
   $form.reset();
@@ -166,6 +170,44 @@ function handleEditClick(event) {
   }
 }
 
+function modalViewSwap(action) {
+  if (action === 'show') {
+    $modal.classList.remove('hidden');
+    $overlay.classList.remove('hidden');
+  } else if (action === 'hide') {
+    $modal.classList.add('hidden');
+    $overlay.classList.add('hidden');
+  }
+}
+function handleDeleteClick(event) {
+  modalViewSwap('show');
+}
+
+function handleCancelModalClick(event) {
+  modalViewSwap('hide');
+}
+
+function removeDOMEntry(entryID) {
+  const $removedEntry = document.querySelector(
+    `li[data-entry-id="${entryID}"]`
+  );
+  $entriesList.removeChild($removedEntry);
+}
+
+function handleConfirmModalClick(event) {
+  modalViewSwap('hide');
+  removeDOMEntry(data.editing.entryID);
+  for (let i = 0; i < data.entries.length; i++) {
+    if (data.entries[i].entryID === data.editing.entryID) {
+      data.entries.splice(i, 1);
+      break;
+    }
+  }
+  toggleNoEntries();
+  data.editing = null;
+  viewSwap('entries');
+}
+
 $photoURL.addEventListener('input', handlePhotoInput);
 
 $form.addEventListener('submit', handleSubmit);
@@ -175,3 +217,6 @@ document.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
 $entriesAnchor.addEventListener('click', handleAnchorClick);
 $newAnchor.addEventListener('click', handleAnchorClick);
 $entriesList.addEventListener('click', handleEditClick);
+$deleteButton.addEventListener('click', handleDeleteClick);
+$cancelModalButton.addEventListener('click', handleCancelModalClick);
+$confirmModalButton.addEventListener('click', handleConfirmModalClick);
