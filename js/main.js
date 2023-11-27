@@ -171,44 +171,42 @@ function handleEditClick(event) {
 }
 
 function modalViewSwap(action) {
-  if (action === "show") {
-    $modal.classList.remove("hidden");
-    $overlay.classList.remove("hidden");
-  }
-  else if (action === "hide") {
-    $modal.classList.add("hidden");
-    $overlay.classList.add("hidden");
+  if (action === 'show') {
+    $modal.classList.remove('hidden');
+    $overlay.classList.remove('hidden');
+  } else if (action === 'hide') {
+    $modal.classList.add('hidden');
+    $overlay.classList.add('hidden');
   }
 }
 function handleDeleteClick(event) {
-  modalViewSwap("show");
+  modalViewSwap('show');
 }
 
 function handleCancelModalClick(event) {
-  modalViewSwap("hide");
+  modalViewSwap('hide');
 }
 
-function removeEntry(entry) {
-
+function removeDOMEntry(entryID) {
+  const $removedEntry = document.querySelector(
+    `li[data-entry-id="${entryID}"]`
+  );
+  console.log('$removedEntry', $removedEntry);
+  $entriesList.removeChild($removedEntry);
 }
-
 
 function handleConfirmModalClick(event) {
-  modalViewSwap("hide");
-  console.log("data.editing", data.editing);
-  console.log("data.entries (before):", data.entries);
-
+  modalViewSwap('hide');
+  removeDOMEntry(data.editing.entryID);
   for (let i = 0; i < data.entries.length; i++) {
     if (data.entries[i].entryID === data.editing.entryID) {
-      data.entries.splice(i,1);
+      data.entries.splice(i, 1);
       break;
     }
   }
-
-  // toggleNoEntries();
-  console.log("data.entries (after):", data.entries);
+  toggleNoEntries();
   data.editing = null;
-  viewSwap("entries");
+  viewSwap('entries');
 }
 
 $photoURL.addEventListener('input', handlePhotoInput);
