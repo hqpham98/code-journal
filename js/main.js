@@ -13,6 +13,10 @@ const $entryFormTitle = document.querySelector('.entry-form-title');
 const $entryTitle = document.querySelector('input[id=title]');
 const $entryNotes = document.querySelector('textarea[id=notes]');
 const $deleteButton = document.querySelector('.delete-button');
+const $modal = document.querySelector('.confirmation-modal');
+const $cancelModalButton = document.querySelector('.cancel-modal-button');
+const $confirmModalButton = document.querySelector('.confirm-modal-button');
+const $overlay = document.querySelector('.overlay');
 
 function resetEntryForm() {
   $form.reset();
@@ -124,6 +128,7 @@ function handleDOMContentLoaded(event) {
 
 function viewSwap(view) {
   data.view = view;
+  console.log(event.target);
 
   if (view === 'entries') {
     $entryForm.classList.add('hidden');
@@ -141,6 +146,7 @@ function handleAnchorClick(event) {
     $deleteButton.classList.add('hidden');
   } else {
     viewSwap('entry-form');
+
   }
 }
 
@@ -166,6 +172,24 @@ function handleEditClick(event) {
   }
 }
 
+function modalViewSwap(action) {
+  if (action === "show") {
+    $modal.classList.remove("hidden");
+    $overlay.classList.remove("hidden");
+  }
+  else if (action === "hide") {
+    $modal.classList.add("hidden");
+    $overlay.classList.add("hidden");
+  }
+}
+function handleDeleteClick(event) {
+  modalViewSwap("show");
+}
+
+function handleCancelModalClick(event) {
+  modalViewSwap("hide");
+}
+
 $photoURL.addEventListener('input', handlePhotoInput);
 
 $form.addEventListener('submit', handleSubmit);
@@ -175,3 +199,5 @@ document.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
 $entriesAnchor.addEventListener('click', handleAnchorClick);
 $newAnchor.addEventListener('click', handleAnchorClick);
 $entriesList.addEventListener('click', handleEditClick);
+$deleteButton.addEventListener('click', handleDeleteClick);
+$cancelModalButton.addEventListener('click', handleCancelModalClick);

@@ -68,7 +68,7 @@
                 <textarea id="notes" rows="8" required></textarea>
                 <div class="row">
                   <div class="strict-column-half">
-                    <button class="delete-button hidden">Delete Entry</button>
+                    <button type="button" class="delete-button hidden">Delete Entry</button>
                   </div>
                   <div class="strict-column-half save-button-wrapper">
                     <input type="submit" value="SAVE" />
@@ -92,9 +92,15 @@
       </main>
     </div>
     <!-- confirmation modal -->
-    <div class="overlay">
-      <div class="confirmation-modal">
-        <p>Are you sure you want to delete this entry?</p>
+    <div class="overlay hidden">
+    </div>
+    <div class="confirmation-modal hidden">
+      <div class="row">
+        <div class="column-full">
+          <p>Are you sure you want to delete this entry?</p>
+        </div>
+      </div>
+      <div class="row">
         <div class="strict-column-half">
           <button class="cancel-modal-button">CANCEL</button>
         </div>
