@@ -191,7 +191,6 @@ function removeDOMEntry(entryID) {
   const $removedEntry = document.querySelector(
     `li[data-entry-id="${entryID}"]`
   );
-  console.log('$removedEntry', $removedEntry);
   $entriesList.removeChild($removedEntry);
 }
 
